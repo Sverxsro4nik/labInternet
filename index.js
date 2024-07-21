@@ -1,5 +1,16 @@
 const sendForm = document.querySelector('form');
 
+const burgerMenuSwitcher = document.querySelector('#menu__toggle');
+
+if (burgerMenuSwitcher) {
+	burgerMenuSwitcher.addEventListener('click', () => {
+		if (burgerMenuSwitcher.checked) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = 'scroll';
+		}
+	});
+}
 sendForm.addEventListener('submit', event => {
 	event.preventDefault();
 
@@ -112,25 +123,3 @@ const changeTitleSizeForMobile = () => {
 	}
 };
 changeTitleSizeForMobile();
-
-const touchSlider = () => {
-	const slider = document.querySelector('.slides');
-
-	slider.addEventListener('touchstart', event => {
-		startX = event.changedTouches[0].clientX;
-	});
-	slider.addEventListener('touchmove', event => {
-		event.preventDefault();
-	});
-	slider.addEventListener('touchend', event => {
-		endX = event.changedTouches[0].clientX;
-		if (startX - endX > 50) {
-			currentSlide--;
-		}
-		if (endX - startX > 50) {
-			currentSlide++;
-			showSlide(currentSlide);
-		}
-	});
-};
-touchSlider();
